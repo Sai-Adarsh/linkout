@@ -12,9 +12,9 @@ class LinkedinConnectService extends linkedin_abstract_service_1.LinkedinAbstrac
         const theUrl = (0, create_linkedin_url_1.createLinkedinLink)(url, true);
         (0, gotoUrl_1.gotoUrl)(page, theUrl);
         await this.waitForLoader(page);
-        /* await page.waitForSelector(".pv-top-card--list > li, .pv-top-card__photo"); */
+        await page.waitForSelector(".pv-top-card--list > li, .pv-top-card__photo");
         await (0, timer_1.timer)(3000);
-        /* const pending = await page.$("button.pv-s-profile-actions--connect:disabled, .message-anywhere-button.artdeco-button--primary");
+        const pending = await page.$("button.pv-s-profile-actions--connect:disabled, .message-anywhere-button.artdeco-button--primary");
         const pending2 = await page.evaluate(() => {
             return !!Array.from(document.querySelectorAll("button")).find((p) => {
                 var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t;
@@ -29,7 +29,7 @@ class LinkedinConnectService extends linkedin_abstract_service_1.LinkedinAbstrac
         });
         if (pending || pending2) {
             throw new linkedin_errors_1.LinkedinErrors("Connection is already pending");
-        } */
+        }
         const info = await this.extractInformation(page);
         await this.clickConnectButton(page);
         await (0, timer_1.timer)(3000);
